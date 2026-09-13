@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# 真实配置含 miIO token / UDID / 内网 IP，禁止入库（用 plug_config.example.yaml 作模板）
+config/plug_config.yaml
+
+# 运行时产物
+*.tmp
+
+# 一次性 debug 复现脚本（保留正式回归测试 .rc_*_red.py / .ipad_cooler_red.py）
+scripts/.bisect*
+scripts/.a1_*
+scripts/.per_*
+scripts/.mini_*
+scripts/.runper_*
+scripts/.sub_*
+scripts/.v4_*
+scripts/.v5_*

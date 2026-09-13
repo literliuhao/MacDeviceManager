@@ -1,0 +1,35 @@
+# 配置模板：复制为 plug_config.yaml 后填入真实值（真实文件已被 .gitignore 排除，不会入库）
+# 获取 miIO token 参见项目 README / 小米云 API 提取教程
+cooler:
+  enabled: true
+  ip: 192.168.x.x          # 水冷器插座（小米智能插座3）
+  token: <your-cooler-plug-token>
+  poll_interval: 30        # 慢轮询秒
+  fast_interval: 5         # 命中阈值后的快确认秒
+  confirm_hits: 5          # 快确认次数（防温度毛刺）
+  on_threshold: 60         # CPU ≥ 此温度开水冷
+  off_threshold: 36        # CPU ≤ 此温度关水冷
+  fail_open_after: 3       # 温度读取连续失败 N 次后开水冷（安全侧）
+ambilight:
+  enabled: true
+  ip: 192.168.x.x          # 氛围灯插座（cuco.plug.v3）
+  token: <your-ambilight-plug-token>
+  time_start: 20           # 亮灯时间窗（小时，支持跨天如 20→8）
+  time_end: 8
+  lock_delay: 120          # 锁屏后倒计时关灯秒
+ipad_charger:
+  enabled: true
+  udid: <your-ipad-udid>   # pymobiledevice3 无线调试 UDID（USB 配对后获得）
+  plug_ip: 192.168.x.x     # iPad 充电插座
+  plug_token: <your-ipad-plug-token>
+  low_battery_threshold: 30    # ≤ 此电量开充
+  high_battery_threshold: 90  # ≥ 此电量停充
+  check_interval: 180      # 电量轮询秒
+  fail_close_after: 40     # 充电中连续读不到电量 N 次后安全关插座
+  report_port: 8737        # iPad 快捷指令 HTTP 上报端口
+  mock:
+    enabled_battery: false
+    level: 15
+    charging: false
+    enabled_plug: false
+  sleep_shutdown: true

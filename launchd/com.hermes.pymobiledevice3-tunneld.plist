@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.hermes.pymobiledevice3-tunneld.plist
+  ----------------------------------------
+  用户级 LaunchAgent：后台常驻 pymobiledevice3 的 remote tunneld，
+  用于和已配对的 iPad Pro 无线通信（电量读取等）。
+  安装步骤见 pair_guide.md 第 3 节。
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key><string>com.hermes.pymobiledevice3-tunneld</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/liuhao/.pyenv/versions/3.12.4/bin/python3</string>
+        <string>-m</string>
+        <string>pymobiledevice3</string>
+        <string>remote</string>
+        <string>tunneld</string>
+        <string>--abort-on-device-disconnect</string>
+    </array>
+
+    <!-- 环境：锁定 python-miio / pymobiledevice3 装在 3.12.4 下 -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/liuhao/.pyenv/versions/3.12.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>PYTHONUNBUFFERED</key><string>1</string>
+    </dict>
+
+    <!-- 崩溃后自动重拉 -->
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>WorkingDirectory</key><string>/Users/liuhao/bin</string>
+
+    <key>StandardOutPath</key>
+    <string>/Users/liuhao/Library/Logs/tunneld.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/liuhao/Library/Logs/tunneld.err.log</string>
+</dict>
+</plist>

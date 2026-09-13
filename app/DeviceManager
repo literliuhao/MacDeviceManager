@@ -1,0 +1,9 @@
+#!/bin/zsh
+# DeviceManager.app launcher — 不用 venv shebang 就能跑
+# NOTE: 本文件是 build_app.sh 的参考模板，真正 App Bundle 内的 launcher 由 scripts/build_app.sh 动态生成，
+#       会把 SCRIPT / DEVICE_MANAGER_HOME 自动替换为当前项目绝对路径。
+PY="/Users/liuhao/.pyenv/versions/3.12.4/bin/python3"
+SCRIPT="/Users/liuhao/work/DeviceManager/bin/device_manager.py"
+export DEVICE_MANAGER_HOME="/Users/liuhao/work/DeviceManager"
+export PATH="/Users/liuhao/.pyenv/versions/3.12.4/bin:/usr/local/bin:/opt/homebrew/bin:$PATH"
+exec "$PY" "$SCRIPT" "$@"

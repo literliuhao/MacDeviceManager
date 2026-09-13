@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  local.miplug.lockwatcher.plist
+  -------------------------------
+  守护进程：监听锁屏/解锁/睡眠/唤醒 + 两阶段水冷 + 氛围灯时间窗口 + iPad 电量阈值充电
+  安装：
+    cp launchd/local.miplug.lockwatcher.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/local.miplug.lockwatcher.plist
+  重启（配置变更后立即生效）：
+    launchctl kickstart -k gui/$(id -u)/local.miplug.lockwatcher
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key><string>local.miplug.lockwatcher</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/liuhao/.pyenv/versions/3.12.4/bin/python3</string>
+        <string>/Users/liuhao/work/DeviceManager/bin/miplug_lock_watcher.py</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/liuhao/.pyenv/versions/3.12.4/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>PYTHONUNBUFFERED</key><string>1</string>
+    </dict>
+
+    <key>KeepAlive</key><true/>
+    <key>RunAtLoad</key><true/>
+
+    <key>WorkingDirectory</key><string>/Users/liuhao/work/DeviceManager</string>
+
+    <key>StandardOutPath</key>
+    <string>/Users/liuhao/Library/Logs/miplug.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/liuhao/Library/Logs/miplug.err.log</string>
+</dict>
+</plist>
